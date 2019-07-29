@@ -1,0 +1,74 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi" xmlns:util="http://schemas.microsoft.com/wix/UtilExtension">
+  <!--右键项目在applaycationInfo按钮上可以看出版本号-->
+  <?define ProductVersion="6.5"?>
+  <!--点击tools-creat GuiD-->
+  <?define GUID_UPGRADE="89ed8fb1-2009-4251-9300-2eec3268eaee" ?>
+  <!--Name：安装项目的名称；Manufacturer：制造商的名称-->
+  <Product Id="*" Name="!(loc.ApplicationName)" Language="1033" Version="$(var.ProductVersion)" Manufacturer="!(loc.ManufacturerName)" UpgradeCode="$(var.GUID_UPGRADE)">
+    <Package InstallerVersion="200" Compressed="yes" InstallScope="perMachine" />
+    <MajorUpgrade DowngradeErrorMessage="A newer version of [ProductName] is already installed." />
+    <!--把.cab集成到.msi中-->
+    <Media Id="1" Cabinet="cab1.cab" EmbedCab="yes" />
+    <!--<MediaTemplate />-->
+    <Feature Id="ProductFeature" Title="!(loc.ApplicationName)" Level="1">
+      <!--安装目录ComponentRef ID-->
+      <ComponentRef Id="ProductComponent1" />
+      <!--存放协议的目录ComponentRef ID-->
+      <ComponentRef Id="ProductComponent2" />
+      <!--快捷方式目录ComponentRef ID-->
+      <ComponentRef Id="ApplicationShortcut" />
+    </Feature>
+    <UI>
+      <!--这里定义了安装UI的样式【此处定义可以让用户选择安装目录】-->
+      <UIRef Id="WixUI_InstallDir" />
+    </UI>
+    <!--这里定义了安装协议-->
+    <WixVariable Id="WixUILicenseRtf" Value="licenses/EULA_CHS_Mini.rtf" />
+    <!--这里定义默认安装目录-->
+    <Property Id="WIXUI_INSTALLDIR" Value="InstallFolder" />
+    <Property Id="WIXUI_EXITDIALOGOPTIONALTEXT" Value="Thank you for installing this product." />
+  </Product>
+  <Fragment>
+    <!--安装目录树结构-->
+    <Directory Id="TARGETDIR" Name="SourceDir">
+      <Directory Id="ProgramMenuFolder">
+        <Directory Id="ApplicationProgramsFolder" Name="WixSetUp" />
+      </Directory>
+      <Directory Id="ProgramFilesFolder">
+        <Directory Id="CompanyFolder" Name="Swack">
+          <Directory Id="InstallFolder" Name="wixsimpleversion">
+            <Directory Id="LicensesFolder" Name="Licenses" />
+          </Directory>
+        </Directory>
+      </Directory>
+    </Directory>
+  </Fragment>
+  <Fragment>
+    <!--安装目录结构-->
+    <DirectoryRef Id="InstallFolder">
+      <Component Id="ProductComponent1" Guid="5E254682-DD5F-453D-8333-844457282026">
+        <!--定义安装目录权限-->
+        <CreateFolder>
+          <Permission User="Everyone" GenericAll="yes" ChangePermission="yes" />
+        </CreateFolder>
+        <!--此处设置.exe和.dll【程序及程序依赖库】-->
+        <File Id="wixsimpleversion" Source="$(var.wixsimpleversion.ProjectDir)bin\Release\wixsimpleversion.exe" Checksum="yes" KeyPath="yes" Assembly=".net" AssemblyApplication="wixsimpleversion" />
+      </Component>
+    </DirectoryRef>
+    <!--协议目录结构-->
+    <DirectoryRef Id="LicensesFolder">
+      <Component Id="ProductComponent2" Guid="5E254682-DD5F-453D-8333-844457282027">
+        <File Id="EULA_CHS_Mini.rtf" Source="licenses/EULA_CHS_Mini.rtf" KeyPath="yes" />
+      </Component>
+    </DirectoryRef>
+    <!--快捷方式目录结构-->
+    <DirectoryRef Id="ApplicationProgramsFolder">
+      <Component Id="ApplicationShortcut" Guid="5E254682-DD5F-453D-8333-844457282028">
+        <Shortcut Id="ApplicationStartMenuShortcut" Name="!(loc.ApplicationName)" Description="Application installed by Swack" Target="[InstallFolder]!(loc.ApplicationName).exe" WorkingDirectory="InstallFolder" />
+        <RemoveFolder Id="ApplicationProgramsFolder" On="uninstall" />
+        <RegistryValue Root="HKCU" Key="Software\Swack\!(loc.ApplicationName)" Name="installed" Type="integer" Value="1" KeyPath="yes" />
+      </Component>
+    </DirectoryRef>
+  </Fragment>
+</Wix>

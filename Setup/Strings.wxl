@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<WixLocalization Culture="en-us" xmlns="http://schemas.microsoft.com/wix/2006/localization">
+  <String Id="ApplicationName">wixsimpleversion</String>
+  <String Id="ManufacturerName">Swack</String>
+  <String Id="WelcomeDlgDescription">
+    Welcome to Install Swack Test Tool.
+
+    The version is v!(bind.property.ProductVersion.Major).!(bind.property.ProductVersion.Minor).
+
+    Click Next to continue or Cancel to exit.
+  </String>
+</WixLocalization>
