@@ -95,6 +95,6 @@
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PreBuildEvent>$(ProjectDir)Script\ChangeWixVersion.exe $(SolutionDir)wixsimpleversion\Properties\AssemblyInfo.cs $(SolutionDir)Setup\Product.wxs</PreBuildEvent>
+    <PreBuildEvent>$(ProjectDir)Script\ChangeWixVersion.exe $(SolutionDir)wixsimpleversion\Properties\AssemblyInfo.cs $(SolutionDir)Setup\Product.wxs $(SolutionDir)Setup\Setup.wixproj</PreBuildEvent>
   </PropertyGroup>
 </Project>
