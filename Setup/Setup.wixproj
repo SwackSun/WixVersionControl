@@ -6,7 +6,7 @@
     <ProductVersion>3.10</ProductVersion>
     <ProjectGuid>31318f82-53c7-454d-8c7e-eab8c0d53743</ProjectGuid>
     <SchemaVersion>2.0</SchemaVersion>
-    <OutputName>333_$(InstallerMajorVersion)_$(InstallerMinorVersion)</OutputName>
+    <OutputName>Setup</OutputName>
     <OutputType>Package</OutputType>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">

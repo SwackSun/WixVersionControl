@@ -1,9 +1,12 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <Wix xmlns="http://schemas.microsoft.com/wix/2006/wi" xmlns:util="http://schemas.microsoft.com/wix/UtilExtension">
   <!--右键项目在applaycationInfo按钮上可以看出版本号-->
-  <?define ProductVersion="6.5"?>
-  <!--点击tools-creat GuiD-->
-  <?define GUID_UPGRADE="89ed8fb1-2009-4251-9300-2eec3268eaee" ?>
+  <?define ProductVersion="6.1"?>
+  <!--点击tools-create GuiD-->
+  <?define GUID_UPGRADE="E5D5E0BB-F93E-4FFA-AF26-CC94AE953340" ?>
+  <?define GUID_PC1="BEB2CF8B-5566-4D29-8A6E-C6C2A4B7164E" ?>
+  <?define GUID_PC2="64561810-E853-4ADB-8C67-49AAD57ACD64" ?>
+  <?define GUID_AS="41D7EC7C-2FD7-4077-A419-215F774C94F2" ?>
   <!--Name：安装项目的名称；Manufacturer：制造商的名称-->
   <Product Id="*" Name="!(loc.ApplicationName)" Language="1033" Version="$(var.ProductVersion)" Manufacturer="!(loc.ManufacturerName)" UpgradeCode="$(var.GUID_UPGRADE)">
     <Package InstallerVersion="200" Compressed="yes" InstallScope="perMachine" />
@@ -47,7 +50,7 @@
   <Fragment>
     <!--安装目录结构-->
     <DirectoryRef Id="InstallFolder">
-      <Component Id="ProductComponent1" Guid="5E254682-DD5F-453D-8333-844457282026">
+      <Component Id="ProductComponent1" Guid="$(var.GUID_PC1)">
         <!--定义安装目录权限-->
         <CreateFolder>
           <Permission User="Everyone" GenericAll="yes" ChangePermission="yes" />
@@ -58,13 +61,13 @@
     </DirectoryRef>
     <!--协议目录结构-->
     <DirectoryRef Id="LicensesFolder">
-      <Component Id="ProductComponent2" Guid="5E254682-DD5F-453D-8333-844457282027">
+      <Component Id="ProductComponent2" Guid="$(var.GUID_PC2)">
         <File Id="EULA_CHS_Mini.rtf" Source="licenses/EULA_CHS_Mini.rtf" KeyPath="yes" />
       </Component>
     </DirectoryRef>
     <!--快捷方式目录结构-->
     <DirectoryRef Id="ApplicationProgramsFolder">
-      <Component Id="ApplicationShortcut" Guid="5E254682-DD5F-453D-8333-844457282028">
+      <Component Id="ApplicationShortcut" Guid="$(var.GUID_AS)">
         <Shortcut Id="ApplicationStartMenuShortcut" Name="!(loc.ApplicationName)" Description="Application installed by Swack" Target="[InstallFolder]!(loc.ApplicationName).exe" WorkingDirectory="InstallFolder" />
         <RemoveFolder Id="ApplicationProgramsFolder" On="uninstall" />
         <RegistryValue Root="HKCU" Key="Software\Swack\!(loc.ApplicationName)" Name="installed" Type="integer" Value="1" KeyPath="yes" />
