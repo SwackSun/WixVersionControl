@@ -7,6 +7,7 @@
   <?define GUID_PC1="BEB2CF8B-5566-4D29-8A6E-C6C2A4B7164E" ?>
   <?define GUID_PC2="64561810-E853-4ADB-8C67-49AAD57ACD64" ?>
   <?define GUID_AS="41D7EC7C-2FD7-4077-A419-215F774C94F2" ?>
+  <?define GUID_DFS="C51D8773-BF33-44D3-B739-15278243E94B" ?>
   <!--Name：安装项目的名称；Manufacturer：制造商的名称-->
   <Product Id="*" Name="!(loc.ApplicationName)" Language="1033" Version="$(var.ProductVersion)" Manufacturer="!(loc.ManufacturerName)" UpgradeCode="$(var.GUID_UPGRADE)">
     <Package InstallerVersion="200" Compressed="yes" InstallScope="perMachine" />
@@ -19,8 +20,10 @@
       <ComponentRef Id="ProductComponent1" />
       <!--存放协议的目录ComponentRef ID-->
       <ComponentRef Id="ProductComponent2" />
-      <!--快捷方式目录ComponentRef ID-->
+      <!--开始菜单快捷方式目录ComponentRef ID-->
       <ComponentRef Id="ApplicationShortcut" />
+      <!--桌面快捷方式目录ComponentRef ID-->
+      <ComponentRef Id="DesktopShortcut" />
     </Feature>
     <UI>
       <!--这里定义了安装UI的样式【此处定义可以让用户选择安装目录】-->
@@ -35,6 +38,7 @@
   <Fragment>
     <!--安装目录树结构-->
     <Directory Id="TARGETDIR" Name="SourceDir">
+      <Directory Id="DesktopFolder" Name="Desktop" />
       <Directory Id="ProgramMenuFolder">
         <Directory Id="ApplicationProgramsFolder" Name="WixSetUp" />
       </Directory>
@@ -65,10 +69,23 @@
         <File Id="EULA_CHS_Mini.rtf" Source="licenses/EULA_CHS_Mini.rtf" KeyPath="yes" />
       </Component>
     </DirectoryRef>
-    <!--快捷方式目录结构-->
+    <!--桌面快捷方式目录结构-->
+    <DirectoryRef Id="DesktopFolder">
+      <Component Id="DesktopShortcut" Guid="5A254682-1D1F-413D-8333-144457282026">
+        <Shortcut Id="ApplicationDesktopShortcut"
+                  Name="!(loc.ApplicationName)"
+                  Target="[InstallFolder]!(loc.ApplicationName).exe"
+                  WorkingDirectory="InstallFolder"/>
+      </Component>
+    </DirectoryRef>
+    <!--开始菜单快捷方式目录结构-->
     <DirectoryRef Id="ApplicationProgramsFolder">
       <Component Id="ApplicationShortcut" Guid="$(var.GUID_AS)">
-        <Shortcut Id="ApplicationStartMenuShortcut" Name="!(loc.ApplicationName)" Description="Application installed by Swack" Target="[InstallFolder]!(loc.ApplicationName).exe" WorkingDirectory="InstallFolder" />
+        <Shortcut Id="ApplicationStartMenuShortcut" 
+                  Name="!(loc.ApplicationName)" 
+                  Description="Application installed by Swack" 
+                  Target="[InstallFolder]!(loc.ApplicationName).exe" 
+                  WorkingDirectory="InstallFolder" />
         <RemoveFolder Id="ApplicationProgramsFolder" On="uninstall" />
         <RegistryValue Root="HKCU" Key="Software\Swack\!(loc.ApplicationName)" Name="installed" Type="integer" Value="1" KeyPath="yes" />
       </Component>
