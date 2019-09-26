@@ -1,12 +1,12 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" DefaultTargets="Build" InitialTargets="EnsureWixToolsetInstalled" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
-    <ProductVersion>3.10</ProductVersion>
+    <ProductVersion>1.1.2.1</ProductVersion>
     <ProjectGuid>0adf44ae-c40f-4890-a077-0d2d6982ed69</ProjectGuid>
     <SchemaVersion>2.0</SchemaVersion>
-    <OutputName>MFC_Setup</OutputName>
+    <OutputName>MFC_Sample_1.1.2.1</OutputName>
     <OutputType>Package</OutputType>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
@@ -24,6 +24,7 @@
   <ItemGroup>
     <Folder Include="Icons\" />
     <Folder Include="licenses\" />
+    <Folder Include="SourceFiles" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Icons\logo_Launch.ico" />
@@ -42,16 +43,6 @@
       <HintPath>$(WixExtDir)\WixUIExtension.dll</HintPath>
       <Name>WixUIExtension</Name>
     </WixExtension>
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\MFC_Sample\MFC_Sample.vcxproj">
-      <Name>MFC_Sample</Name>
-      <Project>{721475e5-5ded-4b37-9f82-c8cb8da0e0a7}</Project>
-      <Private>True</Private>
-      <DoNotHarvest>True</DoNotHarvest>
-      <RefProjectOutputGroups>Binaries;Content;Satellites</RefProjectOutputGroups>
-      <RefTargetDir>INSTALLFOLDER</RefTargetDir>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(WixTargetsPath)" Condition=" '$(WixTargetsPath)' != '' " />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\WiX\v3.x\Wix.targets" Condition=" '$(WixTargetsPath)' == '' AND Exists('$(MSBuildExtensionsPath32)\Microsoft\WiX\v3.x\Wix.targets') " />
