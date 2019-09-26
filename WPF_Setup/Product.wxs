@@ -80,10 +80,10 @@
     <!--开始菜单快捷方式目录结构-->
     <DirectoryRef Id="ApplicationProgramsFolder">
       <Component Id="ApplicationShortcut" Guid="$(var.GUID_AS)">
-        <Shortcut Id="LaunchApplicationShortcut" Name="!(loc.ApplicationName)" Description="Application installed by Swack" Target="[InstallFolder]!(loc.ApplicationName).exe" WorkingDirectory="InstallFolder">
+        <Shortcut Id="ApplicationStartMenuShortcut" Name="!(loc.ApplicationName)" Description="Application install" Target="[InstallFolder]!(loc.ApplicationName).exe" WorkingDirectory="InstallFolder">
           <Icon Id="ico_install" SourceFile="Icons/logo_Launch.ico" />
         </Shortcut>
-        <Shortcut Id="UninstallApplicationShortcut" Name="Uninstall" Description="Uninstall" Target="[SystemFolder]msiexec.exe" WorkingDirectory="SystemFolder" Arguments="/x [ProductCode]">
+        <Shortcut Id="UninstallProduct" Name="Uninstall !(loc.ApplicationName)" Description="Application Uninstall " Target="[SystemFolder]msiexec.exe" WorkingDirectory="SystemFolder" Arguments="/x [ProductCode]">
           <Icon Id="ico_uninstall" SourceFile="Icons/logo_Uninstall.ico" />
         </Shortcut>
         <RemoveFolder Id="ApplicationProgramsFolder" On="uninstall" />
