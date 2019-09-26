@@ -3,10 +3,10 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
-    <ProductVersion>9.1.0.0</ProductVersion>
+    <ProductVersion>9.2.0.0</ProductVersion>
     <ProjectGuid>57083c22-62cf-4e92-99ee-8e4e3a587994</ProjectGuid>
     <SchemaVersion>2.0</SchemaVersion>
-    <OutputName>wixsimpleversion_9.1.0.0</OutputName>
+    <OutputName>wixsimpleversion_9.2.0.0</OutputName>
     <OutputType>Package</OutputType>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
@@ -24,6 +24,7 @@
   <ItemGroup>
     <Folder Include="Icons\" />
     <Folder Include="licenses\" />
+    <Folder Include="SourceFiles" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Icons\logo_Launch.ico" />

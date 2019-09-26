@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <Wix xmlns="http://schemas.microsoft.com/wix/2006/wi" xmlns:util="http://schemas.microsoft.com/wix/UtilExtension">
   <!--右键项目在applaycationInfo按钮上可以看出版本号-->
-  <?define ProductVersion="9.1.0.0"?>
+  <?define ProductVersion="9.2.0.0"?>
   <!--点击tools-create GuiD-->
   <?define GUID_UPGRADE="E5D5E0BB-F93E-4FFA-AF26-CC94AE953340" ?>
   <?define GUID_PC1="BEB2CF8B-5566-4D29-8A6E-C6C2A4B7164E" ?>
