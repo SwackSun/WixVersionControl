@@ -61,7 +61,7 @@
           <Permission User="Everyone" GenericAll="yes" ChangePermission="yes" />
         </CreateFolder>
         <!--此处设置.exe和.dll【程序及程序依赖库】-->
-        <File Id="MFC_Sample" Source="SourceFiles\MFC_Sample.exe" Checksum="yes" KeyPath="yes"/>
+        <File Id="MFC_Sample" Source="SourceFiles\MFC_Sample.exe" Checksum="yes" KeyPath="yes" />
       </Component>
     </DirectoryRef>
     <!--协议目录结构-->
@@ -83,7 +83,7 @@
         <Shortcut Id="LaunchApplicationShortcut" Name="!(loc.ApplicationName)" Description="Application Launch" Target="[InstallFolder]!(loc.ApplicationName).exe" WorkingDirectory="InstallFolder">
           <Icon Id="ico_install" SourceFile="Icons/logo_Launch.ico" />
         </Shortcut>
-        <Shortcut Id="UninstallApplicationShortcut" Name="Uninstall" Description="Application Uninstall" Target="[SystemFolder]msiexec.exe" WorkingDirectory="SystemFolder" Arguments="/x [ProductCode]">
+        <Shortcut Id="UninstallApplicationShortcut" Name="Uninstall !(loc.ApplicationName)" Description="Application Uninstall" Target="[SystemFolder]msiexec.exe" WorkingDirectory="SystemFolder" Arguments="/x [ProductCode]">
           <Icon Id="ico_uninstall" SourceFile="Icons/logo_Uninstall.ico" />
         </Shortcut>
         <RemoveFolder Id="ApplicationProgramsFolder" On="uninstall" />

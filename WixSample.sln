@@ -8,9 +8,12 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WPF_Sample", "WPF_Sample\WP
 		{32FC67B5-5B84-49B0-BB62-38C5713CAA6D} = {32FC67B5-5B84-49B0-BB62-38C5713CAA6D}
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChangeWixVersion", "ChangeWixVersion\ChangeWixVersion.csproj", "{32FC67B5-5B84-49B0-BB62-38C5713CAA6D}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WixVersionControl", "WixVersionControl\WixVersionControl.csproj", "{32FC67B5-5B84-49B0-BB62-38C5713CAA6D}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "MFC_Sample", "MFC_Sample\MFC_Sample.vcxproj", "{721475E5-5DED-4B37-9F82-C8CB8DA0E0A7}"
+	ProjectSection(ProjectDependencies) = postProject
+		{32FC67B5-5B84-49B0-BB62-38C5713CAA6D} = {32FC67B5-5B84-49B0-BB62-38C5713CAA6D}
+	EndProjectSection
 EndProject
 Project("{930C7802-8A8C-48F9-8165-68863BCCD9DD}") = "MFC_Setup", "MFC_Setup\MFC_Setup.wixproj", "{0ADF44AE-C40F-4890-A077-0D2D6982ED69}"
 EndProject

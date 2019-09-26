@@ -6,8 +6,8 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{32FC67B5-5B84-49B0-BB62-38C5713CAA6D}</ProjectGuid>
     <OutputType>Exe</OutputType>
-    <RootNamespace>ChangeWixVersion</RootNamespace>
-    <AssemblyName>ChangeWixVersion</AssemblyName>
+    <RootNamespace>WixVersionControl</RootNamespace>
+    <AssemblyName>WixVersionControl</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -54,9 +54,9 @@
   <PropertyGroup>
     <PostBuildEvent>@echo $(ProjectName) move files
 if $(PlatformTarget)==x86 (
-if exist "$(ProjectDir)$(OutDir)ChangeWixVersion.exe" (
-xcopy "$(ProjectDir)$(OutDir)ChangeWixVersion.exe" "$(SolutionDir)WPF_Sample\Script\" /y 
-xcopy "$(ProjectDir)$(OutDir)ChangeWixVersion.exe" "$(SolutionDir)MFC_Sample\Script\" /y 
+if exist "$(ProjectDir)$(OutDir)WixVersionControl.exe" (
+xcopy "$(ProjectDir)$(OutDir)WixVersionControl.exe" "$(SolutionDir)WPF_Sample\Script\" /y 
+xcopy "$(ProjectDir)$(OutDir)WixVersionControl.exe" "$(SolutionDir)MFC_Sample\Script\" /y 
 )
 )</PostBuildEvent>
   </PropertyGroup>
