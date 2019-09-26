@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <Wix xmlns="http://schemas.microsoft.com/wix/2006/wi" xmlns:util="http://schemas.microsoft.com/wix/UtilExtension">
   <!--右键项目在applaycationInfo按钮上可以看出版本号-->
   <?define ProductVersion="9.2"?>
@@ -44,7 +44,7 @@
       </Directory>
       <Directory Id="ProgramFilesFolder">
         <Directory Id="CompanyFolder" Name="Swack">
-          <Directory Id="InstallFolder" Name="wixsimpleversion">
+          <Directory Id="InstallFolder" Name="MFC_Sample">
             <Directory Id="LicensesFolder" Name="Licenses" />
           </Directory>
         </Directory>
@@ -61,7 +61,7 @@
           <Permission User="Everyone" GenericAll="yes" ChangePermission="yes" />
         </CreateFolder>
         <!--此处设置.exe和.dll【程序及程序依赖库】-->
-        <File Id="wixsimpleversion" Source="$(var.wixsimpleversion.ProjectDir)bin\Release\wixsimpleversion.exe" Checksum="yes" KeyPath="yes" Assembly=".net" AssemblyApplication="wixsimpleversion" />
+        <File Id="MFC_Sample" Source="$(var.MFC_Sample.ProjectDir)bin\Release\MFC_Sample.exe" Checksum="yes" KeyPath="yes" Assembly=".net" AssemblyApplication="MFC_Sample" />
       </Component>
     </DirectoryRef>
     <!--协议目录结构-->

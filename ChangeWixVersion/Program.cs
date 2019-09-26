@@ -12,34 +12,62 @@ namespace ChangeWixVersion
     {
         static int Main(string[] args)
         {
+            //获取操作项目类型 WPF of MFC
+            string ReadType = args[0];
             //AssemblyInfo.cs获取版本信息
-            string[] ReadText = File.ReadAllLines(args[0], Encoding.Default);
-            string versionfile = "";
+            string[] ReadText = File.ReadAllLines(args[1], Encoding.Default);
+            string fileversion = "";
             string version = "";
+            string productversion = "";
             string product = "";
-            foreach (string item in ReadText)
+            if(ReadType.Equals("WPF"))
             {
-                if(!item.Contains("//"))
+                foreach (string item in ReadText)
                 {
-                    if (item.Contains("AssemblyVersion"))
+                    if (!item.Contains("//"))
                     {
-                        version = item.Substring(item.IndexOf("(\"")+2, item.IndexOf("\")") - item.IndexOf("(\"") - 2);
-                        //int version_short_len = version.IndexOf(".", version.IndexOf(".") + 1);
-                        //version = version.Substring(0, version_short_len);
-                    }
-                    if (item.Contains("AssemblyFileVersion"))
-                    {
-                        versionfile = item.Substring(item.IndexOf("(\"") + 2, item.IndexOf("\")") - item.IndexOf("(\"") - 2);
-                    }
-                    if (item.Contains("AssemblyProduct"))
-                    {
-                        product = item.Substring(item.IndexOf("(\"") + 2, item.IndexOf("\")") - item.IndexOf("(\"") - 2);
+                        if (item.Contains("AssemblyVersion"))
+                        {
+                            version = item.Substring(item.IndexOf("(\"") + 2, item.IndexOf("\")") - item.IndexOf("(\"") - 2);
+                            //int version_short_len = version.IndexOf(".", version.IndexOf(".") + 1);
+                            //version = version.Substring(0, version_short_len);
+                        }
+                        if (item.Contains("AssemblyFileVersion"))
+                        {
+                            fileversion = item.Substring(item.IndexOf("(\"") + 2, item.IndexOf("\")") - item.IndexOf("(\"") - 2);
+                        }
+                        if (item.Contains("AssemblyProduct"))
+                        {
+                            product = item.Substring(item.IndexOf("(\"") + 2, item.IndexOf("\")") - item.IndexOf("(\"") - 2);
+                        }
                     }
                 }
             }
+            else
+            {
+                foreach (string item in ReadText)
+                {
+                    if (!item.Contains("//"))
+                    {
+                        if (item.Contains("FileVersion"))
+                        {
+                            fileversion = item.Substring(item.IndexOf("\", \"") + 4, (item.Length-1) - item.IndexOf("\", \"") - 4);
+                        }
+                        if (item.Contains("ProductVersion"))
+                        {
+                            productversion = item.Substring(item.IndexOf("\", \"") + 4, (item.Length - 1) - item.IndexOf("\", \"") - 4);
+                        }
+                        if (item.Contains("FileDescription"))
+                        {
+                            product = item.Substring(item.IndexOf("\", \"") + 4, (item.Length - 1) - item.IndexOf("\", \"") - 4);
+                        }
+                    }
+                }
+            }
+            
             // .wxs 改变ProductVersion
             XmlDocument doc1 = new XmlDocument();
-            doc1.Load(args[1]);
+            doc1.Load(args[2]);
 
             //使用命名空间
             XmlNamespaceManager nsMgr1 = new XmlNamespaceManager(doc1.NameTable);
@@ -57,15 +85,15 @@ namespace ChangeWixVersion
                 {
                     if(item.InnerText.IndexOf("ProductVersion")>=0)
                     {
-                        item.InnerText= "ProductVersion=\""+ versionfile + "\"";
+                        item.InnerText= "ProductVersion=\""+ fileversion + "\"";
                     }
                 }
             }
-            doc1.Save(args[1]);
+            doc1.Save(args[2]);
 
             // .wixproj 改变OutputName
             XmlDocument doc2 = new XmlDocument();
-            doc2.Load(args[2]);
+            doc2.Load(args[3]);
 
             //使用命名空间
             XmlNamespaceManager nsMgr2 = new XmlNamespaceManager(doc2.NameTable);
@@ -77,14 +105,14 @@ namespace ChangeWixVersion
             {
                 if (item.Name.Equals("ProductVersion"))
                 {
-                    item.InnerText = versionfile;
+                    item.InnerText = fileversion;
                 }
                 if (item.Name.Equals("OutputName"))
                 {
-                    item.InnerText = product+"_"+ versionfile;
+                    item.InnerText = product+"_"+ fileversion;
                 }
             }
-            doc2.Save(args[2]);
+            doc2.Save(args[3]);
             return 0;
         }
     }

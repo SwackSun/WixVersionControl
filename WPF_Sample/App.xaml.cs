@@ -6,7 +6,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
 
-namespace wixsimpleversion
+namespace WPF_Sample
 {
     /// <summary>
     /// App.xaml 的交互逻辑

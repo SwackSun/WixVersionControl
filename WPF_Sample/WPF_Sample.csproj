@@ -6,8 +6,8 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{B3B74E74-D75C-42DE-8E9B-28BE45E251FD}</ProjectGuid>
     <OutputType>WinExe</OutputType>
-    <RootNamespace>wixsimpleversion</RootNamespace>
-    <AssemblyName>wixsimpleversion</AssemblyName>
+    <RootNamespace>WPF_Sample</RootNamespace>
+    <AssemblyName>WPF_Sample</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
@@ -25,7 +25,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
+    <PlatformTarget>x86</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
@@ -95,6 +95,6 @@
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PreBuildEvent>$(ProjectDir)Script\ChangeWixVersion.exe $(SolutionDir)wixsimpleversion\Properties\AssemblyInfo.cs $(SolutionDir)Setup\Product.wxs $(SolutionDir)Setup\Setup.wixproj</PreBuildEvent>
+    <PreBuildEvent>$(ProjectDir)Script\ChangeWixVersion.exe WPF $(SolutionDir)WPF_Sample\Properties\AssemblyInfo.cs $(SolutionDir)WPF_Setup\Product.wxs $(SolutionDir)WPF_Setup\WPF_Setup.wixproj</PreBuildEvent>
   </PropertyGroup>
 </Project>

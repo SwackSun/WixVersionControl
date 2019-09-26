@@ -55,7 +55,8 @@
     <PostBuildEvent>@echo $(ProjectName) move files
 if $(PlatformTarget)==x86 (
 if exist "$(ProjectDir)$(OutDir)ChangeWixVersion.exe" (
-xcopy "$(ProjectDir)$(OutDir)ChangeWixVersion.exe" "$(SolutionDir)wixsimpleversion\Script\" /y 
+xcopy "$(ProjectDir)$(OutDir)ChangeWixVersion.exe" "$(SolutionDir)WPF_Sample\Script\" /y 
+xcopy "$(ProjectDir)$(OutDir)ChangeWixVersion.exe" "$(SolutionDir)MFC_Sample\Script\" /y 
 )
 )</PostBuildEvent>
   </PropertyGroup>
