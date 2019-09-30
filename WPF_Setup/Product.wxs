@@ -55,13 +55,13 @@
   <Fragment>
     <!--安装目录结构-->
     <DirectoryRef Id="InstallFolder">
-      <Component Id="ProductComponent1" Guid="$(var.GUID_PC1)">
+      <Component Id="ProductComponent1" Guid="$(var.GUID_PC1)" KeyPath="yes">
         <!--定义安装目录权限-->
         <CreateFolder>
           <Permission User="Everyone" GenericAll="yes" ChangePermission="yes" />
         </CreateFolder>
         <!--此处设置.exe和.dll【程序及程序依赖库】-->
-        <File Id="WPF_Sample" Source="$(var.WPF_Sample.ProjectDir)bin\Release\WPF_Sample.exe" Checksum="yes" KeyPath="yes" Assembly=".net" AssemblyApplication="WPF_Sample" />
+        <File Id="WPF_Sample" Source="SourceFiles\WPF_Sample.exe" Checksum="yes" />
       </Component>
     </DirectoryRef>
     <!--协议目录结构-->
