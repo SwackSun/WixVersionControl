@@ -148,6 +148,17 @@ $(ProjectDir)Script\WixVersionControl.exe MFC $(SolutionDir)MFC_Sample\MFCSample
       <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <AdditionalIncludeDirectories>$(IntDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ResourceCompile>
+    <PostBuildEvent>
+      <Command>@echo $(ProjectName) move files
+if $(PlatformTarget)==x86 (
+if exist "$(SolutionDir)$(Configuration)\MFC_Sample.exe" (
+xcopy "$(SolutionDir)$(Configuration)\MFC_Sample.exe" "$(SolutionDir)MFC_Setup\SourceFiles\" /y 
+)
+)
+
+@echo update setup
+$(ProjectDir)Script\WixVersionControl.exe MFC $(SolutionDir)MFC_Sample\MFCSample.rc $(SolutionDir)MFC_Setup\Product.wxs $(SolutionDir)MFC_Setup\MFC_Setup.wixproj</Command>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
