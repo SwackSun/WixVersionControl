@@ -1,6 +1,6 @@
 ## WixVersionControl v1.2 项目介绍
 
-### 用于帮我们将WPF、MFC项目的Version与WIX项目的Version关联，实现自动化�
+### 用于帮我们将WPF、MFC项目的Version与WIX项目的Version关联，实现自动化
 
 
 ## WPF使用
