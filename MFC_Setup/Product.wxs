@@ -3,7 +3,7 @@
   <!--右键项目在applaycationInfo按钮上可以看出版本号-->
   <?define ProductVersion="1.1.2.1"?>
   <!--点击tools-create GuiD-->
-  <?define GUID_PID="*" ?>
+  <?define GUID_PID="d9906c20-fb41-48e9-ac33-84470bf1c6ef"?>
   <?define GUID_UPGRADE="E5D5E0BB-F93E-4FFA-AF26-CC94AE953340" ?>
   <?define GUID_PC1="BEB2CF8B-5566-4D29-8A6E-C6C2A4B7164E" ?>
   <?define GUID_PC2="64561810-E853-4ADB-8C67-49AAD57ACD64" ?>

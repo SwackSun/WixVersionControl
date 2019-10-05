@@ -157,7 +157,7 @@ xcopy "$(SolutionDir)$(Configuration)\MFC_Sample.exe" "$(SolutionDir)MFC_Setup\S
 )
 
 @echo update setup
-$(ProjectDir)Script\WixVersionControl.exe MFC $(SolutionDir)MFC_Sample\MFCSample.rc $(SolutionDir)MFC_Setup\Product.wxs $(SolutionDir)MFC_Setup\MFC_Setup.wixproj</Command>
+$(ProjectDir)Script\WixVersionControl.exe -mfc -fv $(SolutionDir)MFC_Sample\MFCSample.rc $(SolutionDir)MFC_Setup\Product.wxs $(SolutionDir)MFC_Setup\MFC_Setup.wixproj</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">

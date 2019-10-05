@@ -107,6 +107,6 @@ xcopy "$(ProjectDir)$(OutDir)WPF_Sample.exe" "$(SolutionDir)WPF_Setup\SourceFile
 )
 
 @echo update setup
-$(ProjectDir)Script\WixVersionControl.exe WPF $(SolutionDir)WPF_Sample\Properties\AssemblyInfo.cs $(SolutionDir)WPF_Setup\Product.wxs $(SolutionDir)WPF_Setup\WPF_Setup.wixproj</PostBuildEvent>
+$(ProjectDir)Script\WixVersionControl.exe -wpf -fv $(SolutionDir)WPF_Sample\Properties\AssemblyInfo.cs $(SolutionDir)WPF_Setup\Product.wxs $(SolutionDir)WPF_Setup\WPF_Setup.wixproj</PostBuildEvent>
   </PropertyGroup>
 </Project>

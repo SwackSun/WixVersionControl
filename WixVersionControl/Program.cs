@@ -76,7 +76,7 @@ namespace WixVersionControl
 
             // .wxs 改变ProductVersion
             XmlDocument doc1 = new XmlDocument();
-            doc1.Load(args[2]);
+            doc1.Load(args[3]);
 
             //使用命名空间
             XmlNamespaceManager nsMgr1 = new XmlNamespaceManager(doc1.NameTable);
@@ -99,13 +99,17 @@ namespace WixVersionControl
                     {
                         item.InnerText= "ProductVersion=\""+ version + "\"";
                     }
+                    else if(item.InnerText.IndexOf("GUID_PID") >= 0)
+                    {
+                        item.InnerText = "GUID_PID=\"" + guidD + "\"";
+                    }
                 }
             }
-            doc1.Save(args[2]);
+            doc1.Save(args[3]);
 
             // .wixproj 改变OutputName
             XmlDocument doc2 = new XmlDocument();
-            doc2.Load(args[3]);
+            doc2.Load(args[4]);
 
             //使用命名空间
             XmlNamespaceManager nsMgr2 = new XmlNamespaceManager(doc2.NameTable);
@@ -124,7 +128,7 @@ namespace WixVersionControl
                     item.InnerText = product+"_"+ version;
                 }
             }
-            doc2.Save(args[3]);
+            doc2.Save(args[4]);
             return 0;
         }
     }
