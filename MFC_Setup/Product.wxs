@@ -3,13 +3,14 @@
   <!--右键项目在applaycationInfo按钮上可以看出版本号-->
   <?define ProductVersion="1.1.2.1"?>
   <!--点击tools-create GuiD-->
+  <?define GUID_PID="*" ?>
   <?define GUID_UPGRADE="E5D5E0BB-F93E-4FFA-AF26-CC94AE953340" ?>
   <?define GUID_PC1="BEB2CF8B-5566-4D29-8A6E-C6C2A4B7164E" ?>
   <?define GUID_PC2="64561810-E853-4ADB-8C67-49AAD57ACD64" ?>
   <?define GUID_AS="41D7EC7C-2FD7-4077-A419-215F774C94F2" ?>
   <?define GUID_DFS="C51D8773-BF33-44D3-B739-15278243E94B" ?>
   <!--Name：安装项目的名称；Manufacturer：制造商的名称-->
-  <Product Id="*" Name="!(loc.ApplicationName)" Language="1033" Version="$(var.ProductVersion)" Manufacturer="!(loc.ManufacturerName)" UpgradeCode="$(var.GUID_UPGRADE)">
+  <Product Id="$(var.GUID_PID)" Name="!(loc.ApplicationName)" Language="1033" Version="$(var.ProductVersion)" Manufacturer="!(loc.ManufacturerName)" UpgradeCode="$(var.GUID_UPGRADE)">
     <Package InstallerVersion="200" Compressed="yes" InstallScope="perMachine" />
     <MajorUpgrade DowngradeErrorMessage="A newer version of [ProductName] is already installed." />
     <!--把.cab集成到.msi中-->

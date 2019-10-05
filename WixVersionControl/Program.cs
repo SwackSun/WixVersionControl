@@ -82,6 +82,9 @@ namespace WixVersionControl
             XmlNamespaceManager nsMgr1 = new XmlNamespaceManager(doc1.NameTable);
             nsMgr1.AddNamespace("ns", "http://schemas.microsoft.com/wix/2006/wi");
 
+            //生成GUID
+            string guidD = Guid.NewGuid().ToString("D");
+
             XmlElement root1 = doc1.DocumentElement;
             XmlNodeList xnl1 = root1.ChildNodes;
             foreach (XmlNode item in xnl1)
