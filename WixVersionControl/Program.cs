@@ -12,25 +12,25 @@ namespace WixVersionControl
     {
         static int Main(string[] args)
         {
-            //获取操作项目类型 WPF of MFC
-            string ReadType = args[0];
+            //获取操作项目类型 -wpf of -mfc
+            string ProjectType = args[0];
+            //获取版本信息标识 -pv 产品版本；-fv 文件版本
+            string VersionType = args[1];
             //AssemblyInfo.cs获取版本信息
-            string[] ReadText = File.ReadAllLines(args[1], Encoding.Default);
+            string[] VersionText = File.ReadAllLines(args[2], Encoding.Default);
             string fileversion = "";
-            string version = "";
             string productversion = "";
+            string version = "";
             string product = "";
-            if(ReadType.Equals("WPF"))
+            if(ProjectType.Equals("-wpf"))
             {
-                foreach (string item in ReadText)
+                foreach (string item in VersionText)
                 {
                     if (!item.Contains("//"))
                     {
                         if (item.Contains("AssemblyVersion"))
                         {
-                            version = item.Substring(item.IndexOf("(\"") + 2, item.IndexOf("\")") - item.IndexOf("(\"") - 2);
-                            //int version_short_len = version.IndexOf(".", version.IndexOf(".") + 1);
-                            //version = version.Substring(0, version_short_len);
+                            productversion = item.Substring(item.IndexOf("(\"") + 2, item.IndexOf("\")") - item.IndexOf("(\"") - 2);
                         }
                         if (item.Contains("AssemblyFileVersion"))
                         {
@@ -43,9 +43,9 @@ namespace WixVersionControl
                     }
                 }
             }
-            else
+            else if(ProjectType.Equals("-mfc"))
             {
-                foreach (string item in ReadText)
+                foreach (string item in VersionText)
                 {
                     if (!item.Contains("//"))
                     {
@@ -64,7 +64,16 @@ namespace WixVersionControl
                     }
                 }
             }
-            
+            //获取版本信息
+            if (VersionType.Equals("-pv"))
+            {
+                version = productversion;
+            }
+            else if (VersionType.Equals("-fv"))
+            {
+                version = fileversion;
+            }
+
             // .wxs 改变ProductVersion
             XmlDocument doc1 = new XmlDocument();
             doc1.Load(args[2]);
@@ -85,7 +94,7 @@ namespace WixVersionControl
                 {
                     if(item.InnerText.IndexOf("ProductVersion")>=0)
                     {
-                        item.InnerText= "ProductVersion=\""+ fileversion + "\"";
+                        item.InnerText= "ProductVersion=\""+ version + "\"";
                     }
                 }
             }
@@ -105,11 +114,11 @@ namespace WixVersionControl
             {
                 if (item.Name.Equals("ProductVersion"))
                 {
-                    item.InnerText = fileversion;
+                    item.InnerText = version;
                 }
                 if (item.Name.Equals("OutputName"))
                 {
-                    item.InnerText = product+"_"+ fileversion;
+                    item.InnerText = product+"_"+ version;
                 }
             }
             doc2.Save(args[3]);
